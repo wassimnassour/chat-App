@@ -9,7 +9,7 @@ export const SignUpContainer = styled.main`
 `;
 export const SignUpWrapper = styled.div`
   width: 350px;
-  height: 400px;
+  height: auto;
   box-shadow: 0 0 2px 0 #6f6f6fcc;
   padding: 2rem;
   h1 {

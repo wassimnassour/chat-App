@@ -1,16 +1,17 @@
 import React from "react";
+import {
+  SignUpContainer,
+  SignUpWrapper,
+  InputContainer,
+} from "../signup/signUp.style";
 import { Link } from "react-router-dom";
-import { SignUpContainer, SignUpWrapper, InputContainer } from "./signUp.style";
-const SignUp = () => {
+
+const SignIn = () => {
   return (
     <SignUpContainer>
       <SignUpWrapper>
-        <h1>Sign Up</h1>
+        <h1>Sign In</h1>
         <form>
-          <InputContainer>
-            <label>FullName:</label>
-            <input type="email" />
-          </InputContainer>
           <InputContainer>
             <label>Email:</label>
             <input type="email" />
@@ -20,13 +21,13 @@ const SignUp = () => {
             <input type="email" />
           </InputContainer>
         </form>
-        <button type="submit">Sign Up</button>
+        <button type="submit">Sign In</button>
         <span>
-          if you have account <Link to="/signin">Sign In</Link>
+          if you have don't have account <Link to="/signup">Sign Up</Link>
         </span>
       </SignUpWrapper>
     </SignUpContainer>
   );
 };
 
-export default SignUp;
+export default SignIn;
