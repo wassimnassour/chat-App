@@ -26,7 +26,7 @@ const SignUp = ({ history }) => {
           db.collection("users")
             .doc(email)
             .set(data)
-            .then((props) => {
+            .then(() => {
               history.push("/dashboard");
             })
             .catch((dbErr) => {
