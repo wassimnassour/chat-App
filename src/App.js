@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
-import { SignUp, SignIn } from "./components/index";
+import { SignUp, SignIn, Dashboard } from "./components/index";
 import "./App.css";
 
 function App() {
@@ -8,6 +8,7 @@ function App() {
 		<BrowserRouter>
 			<Route path="/signup" component={SignUp} />
 			<Route path="/signin" component={SignIn} />
+			<Route path="/dashboard" component={Dashboard} />
 		</BrowserRouter>
 	);
 }
