@@ -12,6 +12,7 @@ export const SignUpWrapper = styled.div`
   height: auto;
   box-shadow: 0 0 2px 0 #6f6f6fcc;
   padding: 2rem;
+
   h1 {
     font-size: 24px;
     text-align: center;
@@ -26,7 +27,7 @@ export const SignUpWrapper = styled.div`
     margin: 0 auto;
     color: white;
     font-size: 20px;
-    padding: ;
+
     padding: 10px;
 
     display: flex;
@@ -42,6 +43,10 @@ export const SignUpWrapper = styled.div`
       color: #122850;
       font-weight: bold;
     }
+  }
+  .danger {
+    color: red;
+    text-align: center;
   }
 `;
 export const InputContainer = styled.div`
