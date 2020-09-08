@@ -4,12 +4,12 @@ import { SignUp, SignIn } from "./components/index";
 import "./App.css";
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Route path="/signup" component={SignUp} />
-      <Route path="/signin" component={SignIn} />
-    </BrowserRouter>
-  );
+	return (
+		<BrowserRouter>
+			<Route path="/signup" component={SignUp} />
+			<Route path="/signin" component={SignIn} />
+		</BrowserRouter>
+	);
 }
 
 export default App;
