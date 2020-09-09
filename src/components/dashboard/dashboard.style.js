@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const DashBoardContainer = styled.div`
+export const DashBoardContainer = styled.main`
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -9,11 +9,12 @@ export const DashBoardContainer = styled.div`
 `;
 
 export const DashBoardWrapper = styled.div`
-	background: wheat;
+	background: white;
 	width: 78%;
-	text-align: center;
 	height: 78%;
 	border-radius: 16px;
-	padding: 1rem;
+
 	box-shadow: 0 0 15px 1px #6464646e;
+	display: flex;
+	overflow: hidden;
 `;
