@@ -5,23 +5,32 @@ import { auth, db } from "../../firebase/firebase";
 const firebase = require("firebase");
 const Dashboard = ({ history }) => {
 	const [email, setEmail] = useState(null);
-	const [reciverHasRead, setReciverHasReadl] = useState(false);
 	const [newChatFormVisible, setNewChatFormVisible] = useState(false);
 	const [chats, setChats] = useState(null);
 	const [selectedChat, setSelectedChat] = useState(null);
 	const [id, setId] = useState(null);
 
-	console.log(id);
-
 	const newChat = () => {
 		console.log("newChat");
 	};
-	const selectedChatList = (chatIndex) => {
-		console.log(chatIndex);
-		setSelectedChat(chatIndex);
+	const selectedChatList = async (chatIndex) => {
+		await setSelectedChat(chatIndex);
+		await MessageRead(chatIndex);
 	};
 	const newChatBtnClicked = () => {
 		console.log("newChatBtnClicked");
+	};
+
+	const MessageRead = (selectedChat) => {
+		const userSender =
+			chats[selectedChat].messages[
+				chats[selectedChat].messages.length - 1
+			].sender !== email;
+		if (userSender) {
+			db.collection("chats").doc(id).update({
+				reciverHasRead: true,
+			});
+		}
 	};
 	const msgSubmit = (msg) => {
 		if (msg.length > 0) {
@@ -33,7 +42,7 @@ const Dashboard = ({ history }) => {
 						message: msg,
 						timestamp: Date.now(),
 					}),
-					receiverHasRead: false,
+					reciverHasRead: false,
 				});
 		}
 	};
@@ -58,7 +67,7 @@ const Dashboard = ({ history }) => {
 					});
 			}
 		});
-	}, []);
+	}, [history]);
 
 	return (
 		<>
@@ -80,7 +89,11 @@ const Dashboard = ({ history }) => {
 									chat={chats}
 								/>
 								{selectedChat !== null ? (
-									<ChatMessageField msgSubmitFn={msgSubmit} />
+									<ChatMessageField
+										msgSubmitFn={msgSubmit}
+										MessageReadFn={MessageRead}
+										selectedChat={selectedChat}
+									/>
 								) : null}
 							</div>
 						)}

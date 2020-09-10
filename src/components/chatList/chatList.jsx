@@ -5,6 +5,7 @@ import {
 	SignoutButton,
 	NewMessageButton,
 } from "./chatList.style";
+import { MdNotifications } from "react-icons/md";
 import { auth } from "../../firebase/firebase";
 
 const ChatList = ({
@@ -14,7 +15,8 @@ const ChatList = ({
 	userEmail,
 	selectedChatIndex,
 }) => {
-	console.log(chats);
+	const userIsSender = (chat) =>
+		chat.messages[chat.messages.length - 1].sender !== userEmail;
 	return (
 		<ChatListContainer>
 			{chats ? (
@@ -25,20 +27,30 @@ const ChatList = ({
 					{chats.map((chat, _index) => (
 						<div
 							key={_index}
-							onClick={() => SelectedChatFn(_index)}
+							onClick={() => {
+								SelectedChatFn(_index);
+							}}
 						>
 							<List selected={selectedChatIndex === _index}>
+								<div className="contact">
+									<span>
+										{
+											chat.users.filter(
+												(user) => user !== userEmail
+											)[0]
+										}
+									</span>
+									<span>
+										{chat.messages[
+											chat.messages.length - 1
+										].message.substring(0, 20) + "...."}
+									</span>
+								</div>
 								<span>
-									{
-										chat.users.filter(
-											(user) => user !== userEmail
-										)[0]
-									}
-								</span>
-								<span>
-									{chat.messages[
-										chat.messages.length - 1
-									].message.substring(0, 20) + "...."}
+									{userIsSender(chat) &&
+									chat.reciverHasRead === false ? (
+										<MdNotifications className="Notifications" />
+									) : null}
 								</span>
 							</List>
 						</div>
