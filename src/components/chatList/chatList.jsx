@@ -14,6 +14,7 @@ const ChatList = ({
 	userEmail,
 	selectedChatIndex,
 }) => {
+	console.log(chats);
 	return (
 		<ChatListContainer>
 			{chats ? (
@@ -37,7 +38,7 @@ const ChatList = ({
 								<span>
 									{chat.messages[
 										chat.messages.length - 1
-									].message.substring(0, 30) + "...."}
+									].message.substring(0, 20) + "...."}
 								</span>
 							</List>
 						</div>

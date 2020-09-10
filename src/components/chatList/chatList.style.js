@@ -19,10 +19,14 @@ const Button = css`
 	background: #0028ff;
 	border: none;
 	color: white;
-	padding: 18px;
 	font-weight: Bold;
 	width: 100%;
 	letter-spacing: 1px;
+	display: flex;
+	height: 50px;
+
+	justify-content: center;
+	align-items: center;
 `;
 export const SignoutButton = styled.button`
 	${Button}
