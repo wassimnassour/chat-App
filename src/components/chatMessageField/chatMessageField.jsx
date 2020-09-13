@@ -3,8 +3,9 @@ import { MdSend } from "react-icons/md";
 import { MessageFieldContainer } from "./chatMessageField.style";
 const ChatMessageField = ({ msgSubmitFn, MessageReadFn, selectedChat }) => {
 	const [message, setMessage] = useState("");
-	const submit = (message) => {
-		msgSubmitFn(message);
+	const submit = (message, selectedChat) => {
+		console.log(selectedChat, "submit funtion");
+		msgSubmitFn(message, selectedChat);
 		setMessage("");
 	};
 
@@ -18,11 +19,13 @@ const ChatMessageField = ({ msgSubmitFn, MessageReadFn, selectedChat }) => {
 					setMessage(e.target.value);
 				}}
 				onClick={() => MessageReadFn(selectedChat)}
-				onKeyDown={(event) => event.keyCode === 13 && submit(message)}
+				onKeyDown={(event) =>
+					event.keyCode === 13 && submit(message, selectedChat)
+				}
 			/>
 			<button
 				onClick={(e) => {
-					submit(message);
+					submit(message, selectedChat);
 				}}
 			>
 				<MdSend />

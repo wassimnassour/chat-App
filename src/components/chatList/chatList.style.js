@@ -35,7 +35,6 @@ const Button = css`
 	letter-spacing: 1px;
 	display: flex;
 	height: 50px;
-
 	justify-content: center;
 	align-items: center;
 `;

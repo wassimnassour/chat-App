@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 export const ChatViewContainer = styled.div`
 	width: 100%;
+
+	height: 100%;
 `;
 export const ToolBar = styled.div`
 	width: 100%;
@@ -21,7 +23,7 @@ export const ToolBar = styled.div`
 export const ChatContent = styled.div`
 	margin: 1rem 0;
 	overflow-y: scroll;
-	height: 600px;
+	height: 73%;
 	overflow-x: hidden;
 `;
 export const Message = styled.div`

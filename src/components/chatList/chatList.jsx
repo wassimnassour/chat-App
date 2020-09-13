@@ -5,9 +5,9 @@ import {
 	SignoutButton,
 	NewMessageButton,
 } from "./chatList.style";
-import { MdNotifications } from "react-icons/md";
+import { MdNotifications, MdAddCircle } from "react-icons/md";
 import { auth } from "../../firebase/firebase";
-
+import { CustomButton } from "../index";
 const ChatList = ({
 	newChatBtnFn,
 	SelectedChatFn,
@@ -22,7 +22,7 @@ const ChatList = ({
 			{chats ? (
 				<>
 					<NewMessageButton onClick={newChatBtnFn}>
-						New chate
+						New chat <MdAddCircle />
 					</NewMessageButton>
 					{chats.map((chat, _index) => (
 						<div
@@ -61,7 +61,7 @@ const ChatList = ({
 					New chate
 				</NewMessageButton>
 			)}
-			<SignoutButton onClick={() => auth.signOut()}>
+			<SignoutButton onClick={() => auth.signOut()} className="signOut">
 				Sign out
 			</SignoutButton>
 		</ChatListContainer>
