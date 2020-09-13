@@ -12,7 +12,18 @@ export const List = styled.li`
 	flex-direction: column;
 	border-bottom: 1px solid #62626233;
 	padding: 8px;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
 	${({ selected }) => selected && { background: "#e3e3e3" }}
+	.contact {
+		display: flex;
+		flex-direction: column;
+	}
+	.Notifications {
+		color: red;
+		font-size: 25px;
+	}
 `;
 
 const Button = css`
@@ -24,7 +35,6 @@ const Button = css`
 	letter-spacing: 1px;
 	display: flex;
 	height: 50px;
-
 	justify-content: center;
 	align-items: center;
 `;
