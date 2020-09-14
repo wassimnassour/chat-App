@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { BoxLoading } from "react-loadingg";
 import { DashBoardContainer, DashBoardWrapper } from "./dashboard.style";
 import {
 	ChatList,
@@ -8,6 +9,7 @@ import {
 } from "../index";
 import { auth, db } from "../../firebase/firebase";
 const firebase = require("firebase");
+
 const Dashboard = ({ history }) => {
 	const [email, setEmail] = useState(null);
 	const [newChatFormVisible, setNewChatFormVisible] = useState(true);
@@ -145,7 +147,7 @@ const Dashboard = ({ history }) => {
 					</DashBoardWrapper>
 				</DashBoardContainer>
 			) : (
-				"Loading"
+				<BoxLoading CircleToBlockLoading color="#0028ff" />
 			)}
 		</>
 	);
