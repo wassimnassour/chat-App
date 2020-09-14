@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
 	ChatListContainer,
 	List,
@@ -6,8 +6,7 @@ import {
 	NewMessageButton,
 } from "./chatList.style";
 import { MdNotifications, MdAddCircle } from "react-icons/md";
-import { auth } from "../../firebase/firebase";
-import { CustomButton } from "../index";
+import { auth, db } from "../../firebase/firebase";
 const ChatList = ({
 	newChatBtnFn,
 	SelectedChatFn,
@@ -15,31 +14,50 @@ const ChatList = ({
 	userEmail,
 	selectedChatIndex,
 }) => {
+	const [Chats, setChats] = useState([]);
+
 	const userIsSender = (chat) =>
 		chat.messages[chat.messages.length - 1].sender !== userEmail;
+
+	useEffect(() => {
+		console.log("i run");
+		const getDataWithFullName = async () => {
+			chats.map(async (chat) => {
+				const Email = chat.users.filter(
+					(user) => user !== userEmail
+				)[0];
+				const userData = await db.collection("users").doc(Email).get();
+				const userName = await userData.data().fullName;
+				async function setData(chat, userName) {
+					await setChats((prevState) => [
+						...prevState,
+						{ ...chat, fullName: userName },
+					]);
+				}
+				setData(chat, userName);
+			});
+		};
+
+		getDataWithFullName();
+	}, []);
 	return (
 		<ChatListContainer>
-			{chats ? (
+			{Chats ? (
 				<>
 					<NewMessageButton onClick={newChatBtnFn}>
 						New chat <MdAddCircle />
 					</NewMessageButton>
-					{chats.map((chat, _index) => (
-						<div
-							key={_index}
-							onClick={() => {
-								SelectedChatFn(_index);
-							}}
-						>
-							<List selected={selectedChatIndex === _index}>
+					{Chats.map((chat, _index) => {
+						return (
+							<List
+								selected={selectedChatIndex === _index}
+								key={_index}
+								onClick={() => {
+									SelectedChatFn(_index);
+								}}
+							>
 								<div className="contact">
-									<span>
-										{
-											chat.users.filter(
-												(user) => user !== userEmail
-											)[0]
-										}
-									</span>
+									<span>{chat.fullName}</span>
 									<span>
 										{chat.messages[
 											chat.messages.length - 1
@@ -53,8 +71,8 @@ const ChatList = ({
 									) : null}
 								</span>
 							</List>
-						</div>
-					))}
+						);
+					})}
 				</>
 			) : (
 				<NewMessageButton onClick={newChatBtnFn}>
@@ -67,5 +85,4 @@ const ChatList = ({
 		</ChatListContainer>
 	);
 };
-
 export default ChatList;
