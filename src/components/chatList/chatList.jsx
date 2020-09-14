@@ -20,7 +20,6 @@ const ChatList = ({
 		chat.messages[chat.messages.length - 1].sender !== userEmail;
 
 	useEffect(() => {
-		console.log("i run");
 		const getDataWithFullName = async () => {
 			chats.map(async (chat) => {
 				const Email = chat.users.filter(

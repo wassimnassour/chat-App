@@ -17,8 +17,6 @@ const SignIn = ({ history }) => {
 
   useEffect(() => {
     auth.onAuthStateChanged(async (_usr) => {
-      console.log(_usr);
-
       if (_usr) {
         history.push("/dashboard");
       } else {

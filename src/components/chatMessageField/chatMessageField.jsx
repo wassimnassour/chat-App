@@ -4,7 +4,6 @@ import { MessageFieldContainer } from "./chatMessageField.style";
 const ChatMessageField = ({ msgSubmitFn, MessageReadFn, selectedChat }) => {
 	const [message, setMessage] = useState("");
 	const submit = (message, selectedChat) => {
-		console.log(selectedChat, "submit funtion");
 		msgSubmitFn(message, selectedChat);
 		setMessage("");
 	};

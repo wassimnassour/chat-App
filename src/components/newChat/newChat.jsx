@@ -1,17 +1,14 @@
 import React, { useState } from "react";
 import { db, auth } from "../../firebase/firebase";
 import { Container, ButtonSubmit } from "./newChat.style";
-import { CustomButton } from "../index";
 
 const NewChatComponents = ({ submitNewChatFn, goToChatFn }) => {
 	const [userName, setUserName] = useState("");
 	const [message, setMessage] = useState("");
-	const [serverError, setServerError] = useState("");
 	const buildDocKey = () =>
 		[auth.currentUser.email, userName].sort().join(":");
 
 	const userExists = async () => {
-		const docKey = buildDocKey();
 		const UserSnapShot = await db.collection("users").get();
 		const exists = await UserSnapShot.docs
 			.map((_user) => _user.data().email)
@@ -59,7 +56,6 @@ const NewChatComponents = ({ submitNewChatFn, goToChatFn }) => {
 					Send
 				</ButtonSubmit>
 			</form>
-			{serverError ? <h4>Unable to locate the user</h4> : null}
 		</Container>
 	);
 };

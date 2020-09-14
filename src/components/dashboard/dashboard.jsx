@@ -26,7 +26,6 @@ const Dashboard = ({ history }) => {
 					.where("users", "array-contains", _usr.email)
 					.onSnapshot(async (res) => {
 						const chats = await res.docs.map((_doc) => _doc.data());
-
 						setChats(chats);
 						setEmail(_usr.email);
 					});
