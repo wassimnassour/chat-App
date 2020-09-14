@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   SignUpContainer,
   SignUpWrapper,
@@ -12,6 +12,16 @@ const SignIn = ({ history }) => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+  useEffect(() => {
+    auth.onAuthStateChanged(async (_usr) => {
+      console.log(_usr);
+
+      if (_usr) {
+        history.push("/dashboard");
+      }
+    });
+  }, [history]);
+
   const submit = () => {
     if (email.length > 0 && password.length > 0) {
       console.log(email, password);
@@ -23,6 +33,7 @@ const SignIn = ({ history }) => {
       setError("something went wrong ");
     }
   };
+
   return (
     <SignUpContainer>
       <SignUpWrapper>

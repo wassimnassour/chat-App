@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { auth, db } from "../../firebase/firebase";
 import { SignUpContainer, SignUpWrapper, InputContainer } from "./signUp.style";
@@ -9,6 +9,15 @@ const SignUp = ({ history }) => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+  useEffect(() => {
+    auth.onAuthStateChanged(async (_usr) => {
+      console.log(_usr);
+
+      if (_usr) {
+        history.push("/dashboard");
+      }
+    });
+  }, []);
   const SignUpWithEmail = (e) => {
     e.preventDefault(); // This is to prevent the automatic refreshing of the page on submit.
     if (email.length > 0 && password.length > 0 && fullName.length > 0) {
