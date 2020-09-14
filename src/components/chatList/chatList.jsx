@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
+import Avatar from "react-avatar";
+import { MdNotifications, MdAddCircle } from "react-icons/md";
+
 import {
 	ChatListContainer,
 	List,
 	SignoutButton,
 	NewMessageButton,
 } from "./chatList.style";
-import { MdNotifications, MdAddCircle } from "react-icons/md";
 import { auth, db } from "../../firebase/firebase";
 const ChatList = ({
 	newChatBtnFn,
@@ -56,12 +58,22 @@ const ChatList = ({
 								}}
 							>
 								<div className="contact">
-									<span>{chat.fullName}</span>
-									<span>
-										{chat.messages[
-											chat.messages.length - 1
-										].message.substring(0, 20) + "...."}
-									</span>
+									<Avatar
+										name={chat.fullName}
+										size="45"
+										round={true}
+										className="avatar"
+									/>
+									<div className="user">
+										<span className="Name">
+											{chat.fullName}
+										</span>
+										<span className="last_message">
+											{chat.messages[
+												chat.messages.length - 1
+											].message.substring(0, 20) + "...."}
+										</span>
+									</div>
 								</div>
 								<span>
 									{userIsSender(chat) &&
