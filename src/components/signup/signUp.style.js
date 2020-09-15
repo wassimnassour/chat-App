@@ -21,18 +21,15 @@ export const SignUpWrapper = styled.div`
     margin: 44px 0 20px;
   }
   button {
-    background: #041b46f0;
+    background: #0f4c75;
     border: none;
     width: 100%;
     margin: 0 auto;
     color: white;
     font-size: 20px;
-
     padding: 10px;
-
     display: flex;
     justify-content: center;
-
     border-radius: 5px;
   }
   span {
@@ -55,5 +52,8 @@ export const InputContainer = styled.div`
   flex-direction: column;
   label {
     margin: 7px 0 3px;
+  }
+  input {
+    outline: none;
   }
 `;

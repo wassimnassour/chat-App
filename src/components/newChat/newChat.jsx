@@ -46,7 +46,7 @@ const NewChatComponents = ({ submitNewChatFn, goToChatFn }) => {
 				/>
 
 				<label htmlFor="new-chat-username">Enter Your Message</label>
-				<input
+				<textarea
 					required
 					id="new-chat-message"
 					onChange={(e) => setMessage(e.target.value)}

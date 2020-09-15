@@ -6,16 +6,17 @@ export const ChatListContainer = styled.div`
 	width: 30%;
 	position: relative;
 	border-right: 1px solid #62626233;
+	background: #0f4c75;
 `;
 export const List = styled.li`
 	display: flex;
 	flex-direction: column;
-	border-bottom: 1px solid #62626233;
+	border-bottom: 1px solid #fffbfb17;
 	padding: 12px 0px 12px 8px;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	${({ selected }) => selected && { background: "#e3e3e3" }}
+	${({ selected }) => selected && { background: "#156296cf" }}}
 	.contact {
 		display: flex;
 		align-items: center;
@@ -28,10 +29,12 @@ export const List = styled.li`
 			.Name {
 				font-weight: bold;
 				margin: 4px 0;
+				color: white;
 			}
 			.last_message {
 				font-weight: 400;
-				color: #5c5d5d;
+
+				color: #d1d8d8;
 			}
 		}
 		.avatar {
@@ -47,7 +50,6 @@ export const List = styled.li`
 `;
 
 const Button = css`
-	background: #0028ff;
 	border: none;
 	color: white;
 	font-weight: Bold;
@@ -57,13 +59,16 @@ const Button = css`
 	height: 50px;
 	justify-content: center;
 	align-items: center;
+	background: transparent;
 `;
 export const SignoutButton = styled.button`
 	${Button}
 	position: absolute;
 	bottom: 0;
 	left: 0;
+	border-top: 1px solid gray;
 `;
 export const NewMessageButton = styled.button`
 	${Button}
+	border-bottom:1px solid gray;
 `;

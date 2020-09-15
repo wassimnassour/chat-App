@@ -8,10 +8,7 @@ export const ChatViewContainer = styled.div`
 export const ToolBar = styled.div`
 	width: 100%;
 	font-size: 15px;
-	color: white;
-	/*	padding: 18px;
-*/
-	background: #0028ff;
+
 	font-weight: Bold;
 	font-weight: 500;
 	letter-spacing: 1px;
@@ -19,6 +16,8 @@ export const ToolBar = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	box-shadow: 0 0 2px grey;
+	color: black;
 `;
 export const ChatContent = styled.div`
 	margin: 1rem 0;
@@ -33,10 +32,16 @@ export const Message = styled.div`
 		justify-content: flex-end;
 		margin: 6px 0;
 		margin-right: 35px;
+		span {
+			background: #0f4c75;
+		}
 	}
 	&.sender {
 		margin: 6px 0;
 		margin-left: 35px;
+		span {
+			background: #a9a6a6;
+		}
 	}
 	span {
 		background: #3d5bf9;

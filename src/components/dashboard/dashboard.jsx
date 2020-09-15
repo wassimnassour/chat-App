@@ -146,7 +146,7 @@ const Dashboard = ({ history }) => {
 					</DashBoardWrapper>
 				</DashBoardContainer>
 			) : (
-				<BoxLoading CircleToBlockLoading color="#0028ff" />
+				<BoxLoading CircleToBlockLoading color="#0f4c75" />
 			)}
 		</>
 	);
