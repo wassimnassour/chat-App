@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
+import { MdBackspace } from "react-icons/md";
+
 import {
 	ChatViewContainer,
 	ToolBar,
 	ChatContent,
 	Message,
 } from "./chatView.style";
-const ChatView = ({ chat, userEmail, selectedChat }) => {
+const ChatView = ({ chat, userEmail, selectedChat, SetOpenFn }) => {
 	useEffect(() => {
 		const container = document.getElementById("chatview-container");
 		if (container) {
@@ -15,13 +17,18 @@ const ChatView = ({ chat, userEmail, selectedChat }) => {
 	return (
 		<>
 			{selectedChat !== null ? (
-				<ChatViewContainer>
+				<ChatViewContainer selectedChat={selectedChat}>
 					<ToolBar>
-						{
-							chat[selectedChat].users.filter(
-								(_usr) => _usr !== userEmail
-							)[0]
-						}
+						<button onClick={() => SetOpenFn()}>
+							<MdBackspace />
+						</button>
+						<span>
+							{
+								chat[selectedChat].users.filter(
+									(_usr) => _usr !== userEmail
+								)[0]
+							}
+						</span>
 					</ToolBar>
 					<ChatContent id="chatview-container">
 						{chat[selectedChat].messages.map((_msg, _index) => (

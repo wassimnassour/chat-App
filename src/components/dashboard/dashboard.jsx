@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { BoxLoading } from "react-loadingg";
-import { DashBoardContainer, DashBoardWrapper } from "./dashboard.style";
+import {
+	DashBoardContainer,
+	DashBoardWrapper,
+	ChatContainer,
+} from "./dashboard.style";
 import {
 	ChatList,
 	ChatView,
@@ -15,7 +19,9 @@ const Dashboard = ({ history }) => {
 	const [newChatFormVisible, setNewChatFormVisible] = useState(true);
 	const [chats, setChats] = useState(null);
 	const [selectedChat, setSelectedChat] = useState(null);
-
+	const [Media, setMedia] = useState(null);
+	const WidthOfPage = window.innerWidth;
+	console.log(WidthOfPage);
 	useEffect(() => {
 		auth.onAuthStateChanged(async (_usr) => {
 			if (!_usr) {
@@ -31,7 +37,28 @@ const Dashboard = ({ history }) => {
 					});
 			}
 		});
+		//add Event Listener for Media querie
+		const mq = window.matchMedia("(max-width: 500px)");
+		mq.addEventListener("change", WidthChange);
+		WidthChange(mq);
+		// media query change
+		function WidthChange(mq) {
+			if (mq.matches) {
+				setMedia(true);
+				setNewChatFormVisible(false);
+			} else {
+				setMedia(false);
+				setNewChatFormVisible(true);
+			}
+		}
+		return () => {
+			//remove EventListener
+			mq.removeEventListener("change", WidthChange);
+		};
 	}, [history]);
+
+	// media query event handler
+
 	const selectedChatList = async (chatIndex) => {
 		await setSelectedChat(chatIndex);
 		setNewChatFormVisible(false);
@@ -109,6 +136,11 @@ const Dashboard = ({ history }) => {
 		}
 	};
 
+	console.log(Media);
+	const SetOpen = () => {
+		setSelectedChat(null);
+	};
+	console.log(selectedChat);
 	return (
 		<>
 			{email ? (
@@ -122,11 +154,12 @@ const Dashboard = ({ history }) => {
 							selectedChatIndex={selectedChat}
 						/>
 						{newChatFormVisible ? null : (
-							<div className="messages-container">
+							<ChatContainer selectedChatIndex={selectedChat}>
 								<ChatView
 									userEmail={email}
 									selectedChat={selectedChat}
 									chat={chats}
+									SetOpenFn={SetOpen}
 								/>
 								{selectedChat !== null ? (
 									<ChatMessageField
@@ -135,7 +168,7 @@ const Dashboard = ({ history }) => {
 										selectedChat={selectedChat}
 									/>
 								) : null}
-							</div>
+							</ChatContainer>
 						)}
 						{newChatFormVisible ? (
 							<NewChatComponents

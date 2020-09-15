@@ -7,6 +7,7 @@ import {
 	List,
 	SignoutButton,
 	NewMessageButton,
+	ListUsers,
 } from "./chatList.style";
 import { auth, db } from "../../firebase/firebase";
 const ChatList = ({
@@ -42,48 +43,51 @@ const ChatList = ({
 		getDataWithFullName();
 	}, []);
 	return (
-		<ChatListContainer>
+		<ChatListContainer selectedChatIndex={selectedChatIndex}>
 			{Chats ? (
 				<>
 					<NewMessageButton onClick={newChatBtnFn}>
 						New chat <MdAddCircle />
 					</NewMessageButton>
-					{Chats.map((chat, _index) => {
-						return (
-							<List
-								selected={selectedChatIndex === _index}
-								key={_index}
-								onClick={() => {
-									SelectedChatFn(_index);
-								}}
-							>
-								<div className="contact">
-									<Avatar
-										name={chat.fullName}
-										size="45"
-										round={true}
-										className="avatar"
-									/>
-									<div className="user">
-										<span className="Name">
-											{chat.fullName}
-										</span>
-										<span className="last_message">
-											{chat.messages[
-												chat.messages.length - 1
-											].message.substring(0, 20) + "...."}
-										</span>
+					<ListUsers>
+						{Chats.map((chat, _index) => {
+							return (
+								<List
+									selected={selectedChatIndex === _index}
+									key={_index}
+									onClick={() => {
+										SelectedChatFn(_index);
+									}}
+								>
+									<div className="contact">
+										<Avatar
+											name={chat.fullName}
+											size="45"
+											round={true}
+											className="avatar"
+										/>
+										<div className="user">
+											<span className="Name">
+												{chat.fullName}
+											</span>
+											<span className="last_message">
+												{chat.messages[
+													chat.messages.length - 1
+												].message.substring(0, 25) +
+													"...."}
+											</span>
+										</div>
 									</div>
-								</div>
-								<span>
-									{userIsSender(chat) &&
-									chat.reciverHasRead === false ? (
-										<MdNotifications className="Notifications" />
-									) : null}
-								</span>
-							</List>
-						);
-					})}
+									<span>
+										{userIsSender(chat) &&
+										chat.reciverHasRead === false ? (
+											<MdNotifications className="Notifications" />
+										) : null}
+									</span>
+								</List>
+							);
+						})}
+					</ListUsers>
 				</>
 			) : (
 				<NewMessageButton onClick={newChatBtnFn}>

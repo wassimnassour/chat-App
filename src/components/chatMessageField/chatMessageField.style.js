@@ -36,4 +36,7 @@ export const MessageFieldContainer = styled.div`
 		color: #0f4c75;
 		outline: none;
 	}
+	@media (max-width: 500px) {
+		width: 91%;
+	}
 `;

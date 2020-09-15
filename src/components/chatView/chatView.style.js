@@ -18,6 +18,24 @@ export const ToolBar = styled.div`
 	align-items: center;
 	box-shadow: 0 0 2px grey;
 	color: black;
+	/*display: flex;
+	justify-content: space-between;
+	align-items: center;*/
+	padding: 0 8px;
+	button {
+		display: none;
+	}
+	@media (max-width: 500px) {
+		button {
+			border: none;
+			background: transparent;
+			color: #0f4c75;
+			font-size: 19px;
+			display: flex;
+			position: absolute;
+			left: 4%;
+		}
+	}
 `;
 export const ChatContent = styled.div`
 	margin: 1rem 0;
@@ -30,14 +48,12 @@ export const Message = styled.div`
 		display: flex;
 
 		justify-content: flex-end;
-		margin: 6px 0;
 		margin-right: 35px;
 		span {
 			background: #0f4c75;
 		}
 	}
 	&.sender {
-		margin: 6px 0;
 		margin-left: 35px;
 		span {
 			background: #a9a6a6;
@@ -49,7 +65,7 @@ export const Message = styled.div`
 		padding: 8px;
 		color: white;
 		border-radius: 6px;
-
+		margin: 10px 0;
 		max-width: 50%;
 	}
 `;

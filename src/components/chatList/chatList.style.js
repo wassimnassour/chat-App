@@ -7,6 +7,19 @@ export const ChatListContainer = styled.div`
 	position: relative;
 	border-right: 1px solid #62626233;
 	background: #0f4c75;
+
+	@media (max-width: 800px) {
+		width: 36%;
+	}
+	@media (max-width: 650px) {
+		width: 40%;
+	}
+	@media (max-width: 500px) {
+		${({ selectedChatIndex }) =>
+			selectedChatIndex !== null
+				? { display: "none" }
+				: { width: "100%" }}
+	}
 `;
 export const List = styled.li`
 	display: flex;
@@ -48,6 +61,10 @@ export const List = styled.li`
 		padding: 0 6px 0;
 	}
 `;
+export const ListUsers = styled.div`
+	overflow-y: scroll;
+	overflow-x: hidden;
+`;
 
 const Button = css`
 	border: none;
@@ -67,6 +84,8 @@ export const SignoutButton = styled.button`
 	bottom: 0;
 	left: 0;
 	border-top: 1px solid gray;
+	background: #0f4c75;
+	z-index: 12;
 `;
 export const NewMessageButton = styled.button`
 	${Button}
