@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Avatar from "react-avatar";
 import { MdNotifications, MdAddCircle } from "react-icons/md";
 
@@ -9,7 +9,7 @@ import {
 	NewMessageButton,
 	ListUsers,
 } from "./chatList.style";
-import { auth, db } from "../../firebase/firebase";
+import { auth } from "../../firebase/firebase";
 const ChatList = ({
 	newChatBtnFn,
 	SelectedChatFn,
@@ -17,40 +17,19 @@ const ChatList = ({
 	userEmail,
 	selectedChatIndex,
 }) => {
-	const [Chats, setChats] = useState([]);
-
+	//check who send last message
 	const userIsSender = (chat) =>
 		chat.messages[chat.messages.length - 1].sender !== userEmail;
 
-	useEffect(() => {
-		const getDataWithFullName = async () => {
-			chats.map(async (chat) => {
-				const Email = chat.users.filter(
-					(user) => user !== userEmail
-				)[0];
-				const userData = await db.collection("users").doc(Email).get();
-				const userName = await userData.data().fullName;
-				async function setData(chat, userName) {
-					await setChats((prevState) => [
-						...prevState,
-						{ ...chat, fullName: userName },
-					]);
-				}
-				setData(chat, userName);
-			});
-		};
-
-		getDataWithFullName();
-	}, []);
 	return (
 		<ChatListContainer selectedChatIndex={selectedChatIndex}>
-			{Chats ? (
+			{chats ? (
 				<>
 					<NewMessageButton onClick={newChatBtnFn}>
 						New chat <MdAddCircle />
 					</NewMessageButton>
 					<ListUsers>
-						{Chats.map((chat, _index) => {
+						{chats.map((chat, _index) => {
 							return (
 								<List
 									selected={selectedChatIndex === _index}

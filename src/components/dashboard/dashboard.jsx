@@ -17,26 +17,54 @@ const firebase = require("firebase");
 const Dashboard = ({ history }) => {
 	const [email, setEmail] = useState(null);
 	const [newChatFormVisible, setNewChatFormVisible] = useState(true);
-	const [chats, setChats] = useState(null);
+	const [chats, setChats] = useState([]);
 	const [selectedChat, setSelectedChat] = useState(null);
 	const [Media, setMedia] = useState(null);
-	const WidthOfPage = window.innerWidth;
-	console.log(WidthOfPage);
+
 	useEffect(() => {
 		auth.onAuthStateChanged(async (_usr) => {
+			//check if user alerady singin
 			if (!_usr) {
 				history.push("/signin");
 			} else {
+				//fetch all converstions of a user
 				await db
 					.collection("chats")
 					.where("users", "array-contains", _usr.email)
 					.onSnapshot(async (res) => {
 						const chats = await res.docs.map((_doc) => _doc.data());
-						setChats(chats);
 						setEmail(_usr.email);
+
+						const getDataWithFullName = async () => {
+							chats.map(async (chat) => {
+								const Email = chat.users.filter(
+									(user) => user !== email
+								)[0];
+								async function setData(chat, userName) {
+									await setChats((prevState) => [
+										...prevState,
+										{
+											...chat,
+											fullName: userName,
+										},
+									]);
+								}
+								await db
+									.collection("users")
+									.doc(Email)
+									.get()
+									.then((res) =>
+										setData(chat, res.data().fullName)
+									)
+									.catch((err) => console.log(err));
+							});
+						};
+
+						getDataWithFullName();
 					});
 			}
 		});
+
 		//add Event Listener for Media querie
 		const mq = window.matchMedia("(max-width: 500px)");
 		mq.addEventListener("change", WidthChange);
@@ -57,19 +85,21 @@ const Dashboard = ({ history }) => {
 		};
 	}, [history]);
 
-	// media query event handler
-
+	//select a chat
 	const selectedChatList = async (chatIndex) => {
 		await setSelectedChat(chatIndex);
 		setNewChatFormVisible(false);
 		await MessageRead(chatIndex);
 	};
+
+	//for show New message components
 	const newChatBtnClicked = () => {
 		setNewChatFormVisible(!newChatFormVisible);
 	};
-
+	// build Doc Id
 	const buildDocKey = (friend) => [email, friend].sort().join(":");
 
+	//if user See Message
 	const MessageRead = (selectedChat) => {
 		const key = buildDocKey(
 			chats[selectedChat].users.filter((_usr) => _usr !== email)[0]
@@ -85,7 +115,7 @@ const Dashboard = ({ history }) => {
 			});
 		}
 	};
-
+	//submit Message
 	const msgSubmit = (msg, index) => {
 		const key = buildDocKey(
 			chats[index].users.filter((_usr) => _usr !== email)[0]
@@ -104,7 +134,7 @@ const Dashboard = ({ history }) => {
 				});
 		}
 	};
-
+	//if i alerady tolk to this friend
 	const goToChat = async (docKey, msg) => {
 		const usersInChat = docKey.split(":");
 		const chat = chats.find((_chat) =>
@@ -114,6 +144,8 @@ const Dashboard = ({ history }) => {
 		await setSelectedChat(chats.indexOf(chat));
 		await msgSubmit(msg, chats.indexOf(chat));
 	};
+
+	//New Friend Chat
 
 	const submitNewChat = async (chatObj) => {
 		const docKey = buildDocKey(chatObj.sendTo);
@@ -135,12 +167,10 @@ const Dashboard = ({ history }) => {
 			setSelectedChat(chats.length - 1);
 		}
 	};
-
-	console.log(Media);
+	// for Back to list Of users
 	const SetOpen = () => {
 		setSelectedChat(null);
 	};
-	console.log(selectedChat);
 	return (
 		<>
 			{email ? (

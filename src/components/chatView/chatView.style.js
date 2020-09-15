@@ -40,7 +40,7 @@ export const ToolBar = styled.div`
 export const ChatContent = styled.div`
 	margin: 1rem 0;
 	overflow-y: scroll;
-	height: 73%;
+	height: 80%;
 	overflow-x: hidden;
 `;
 export const Message = styled.div`

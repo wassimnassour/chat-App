@@ -62,7 +62,7 @@ export const List = styled.li`
 	}
 `;
 export const ListUsers = styled.div`
-	overflow-y: scroll;
+	overflow-y: auto;
 	overflow-x: hidden;
 `;
 

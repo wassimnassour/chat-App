@@ -3,6 +3,7 @@ import { MdSend } from "react-icons/md";
 import { MessageFieldContainer } from "./chatMessageField.style";
 const ChatMessageField = ({ msgSubmitFn, MessageReadFn, selectedChat }) => {
 	const [message, setMessage] = useState("");
+	//submit a message
 	const submit = (message, selectedChat) => {
 		msgSubmitFn(message, selectedChat);
 		setMessage("");
