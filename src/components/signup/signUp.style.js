@@ -55,5 +55,8 @@ export const InputContainer = styled.div`
   }
   input {
     outline: none;
+    height: 29px;
+    font-size: 16px;
+    padding: 3px;
   }
 `;
