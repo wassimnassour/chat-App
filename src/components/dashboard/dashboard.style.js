@@ -35,6 +35,8 @@ export const DashBoardWrapper = styled.div`
 	box-shadow: 0 0 15px 1px #6464646e;
 	display: flex;
 	overflow: hidden;
+	position: relative;
+
 	@media (max-width: 1000px) {
 		width: 90%;
 	}

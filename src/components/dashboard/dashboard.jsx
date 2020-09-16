@@ -168,28 +168,35 @@ const Dashboard = ({ history }) => {
 		}
 	};
 	// for Back to list Of users
-	const SetOpen = () => {
+	const SetConversitionOpen = () => {
 		setSelectedChat(null);
+	};
+
+	// hidde Newchat Component
+	const toggelNewMessageComponent = () => {
+		setNewChatFormVisible(false);
 	};
 	return (
 		<>
 			{email ? (
 				<DashBoardContainer>
 					<DashBoardWrapper>
-						<ChatList
-							newChatBtnFn={newChatBtnClicked}
-							SelectedChatFn={selectedChatList}
-							chats={chats}
-							userEmail={email}
-							selectedChatIndex={selectedChat}
-						/>
+						{newChatFormVisible ? null : (
+							<ChatList
+								newChatBtnFn={newChatBtnClicked}
+								SelectedChatFn={selectedChatList}
+								chats={chats}
+								userEmail={email}
+								selectedChatIndex={selectedChat}
+							/>
+						)}
 						{newChatFormVisible ? null : (
 							<ChatContainer selectedChatIndex={selectedChat}>
 								<ChatView
 									userEmail={email}
 									selectedChat={selectedChat}
 									chat={chats}
-									SetOpenFn={SetOpen}
+									SetConversitionOpenFn={SetConversitionOpen}
 								/>
 								{selectedChat !== null ? (
 									<ChatMessageField
@@ -202,8 +209,12 @@ const Dashboard = ({ history }) => {
 						)}
 						{newChatFormVisible ? (
 							<NewChatComponents
+								toggelNewMessageComponentFn={
+									toggelNewMessageComponent
+								}
 								submitNewChatFn={submitNewChat}
 								goToChatFn={goToChat}
+								newChatFormVisible={newChatFormVisible}
 							/>
 						) : null}
 					</DashBoardWrapper>

@@ -7,7 +7,7 @@ import {
 	ChatContent,
 	Message,
 } from "./chatView.style";
-const ChatView = ({ chat, userEmail, selectedChat, SetOpenFn }) => {
+const ChatView = ({ chat, userEmail, selectedChat, SetConversitionOpenFn }) => {
 	const [userName, setUserName] = useState(null);
 	useEffect(() => {
 		// scroll to last message
@@ -40,7 +40,7 @@ const ChatView = ({ chat, userEmail, selectedChat, SetOpenFn }) => {
 			{selectedChat !== null ? (
 				<ChatViewContainer selectedChat={selectedChat}>
 					<ToolBar>
-						<button onClick={() => SetOpenFn()}>
+						<button onClick={() => SetConversitionOpenFn()}>
 							<MdBackspace />
 						</button>
 						<span>{userName}</span>

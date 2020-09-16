@@ -1,11 +1,16 @@
 import styled from "styled-components";
 
 export const Container = styled.main`
+	${({ newChatFormVisible }) =>
+		newChatFormVisible ? { width: "100%" } : { background: "blue" }}
 	width: 55%;
 	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	.backButton {
+		display: none;
+	}
 	h2 {
 		text-align: center;
 	}
@@ -30,6 +35,25 @@ export const Container = styled.main`
 			overflow: auto;
 			padding: 6px;
 			outline: none;
+		}
+	}
+	@media (max-width: 500px) {
+		width: 100%;
+		form {
+			width: 80%;
+		}
+	}
+
+	@media (max-width: 500px) {
+		.backButton {
+			border: none;
+			background: transparent;
+			color: #0f4c75;
+			font-size: 30px;
+			display: flex;
+			position: absolute;
+			left: 4%;
+			top: 4%;
 		}
 	}
 `;

@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import { db, auth } from "../../firebase/firebase";
 import { Container, ButtonSubmit } from "./newChat.style";
+import { MdBackspace } from "react-icons/md";
 
-const NewChatComponents = ({ submitNewChatFn, goToChatFn }) => {
+const NewChatComponents = ({
+	submitNewChatFn,
+	goToChatFn,
+	newChatFormVisible,
+	toggelNewMessageComponentFn,
+}) => {
 	const [userName, setUserName] = useState("");
 	const [message, setMessage] = useState("");
 	const buildDocKey = () =>
@@ -32,8 +38,15 @@ const NewChatComponents = ({ submitNewChatFn, goToChatFn }) => {
 				: submitNewChatFn({ sendTo: userName, msg: message });
 		}
 	};
+	console.log(newChatFormVisible);
 	return (
-		<Container>
+		<Container newChatFormVisible={newChatFormVisible}>
+			<button
+				onClick={() => toggelNewMessageComponentFn()}
+				className="backButton"
+			>
+				<MdBackspace />
+			</button>
 			<h2>Send A Message!</h2>
 			<form onSubmit={submit}>
 				<label htmlFor="new-chat-username">
