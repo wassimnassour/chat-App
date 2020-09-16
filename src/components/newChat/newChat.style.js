@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
 export const Container = styled.main`
-	${({ newChatFormVisible }) =>
-		newChatFormVisible ? { width: "100%" } : { background: "blue" }}
 	width: 55%;
 	margin: 0 auto;
 	display: flex;
@@ -38,6 +36,8 @@ export const Container = styled.main`
 		}
 	}
 	@media (max-width: 500px) {
+		${({ newChatFormVisible }) =>
+			newChatFormVisible ? { width: "100%" } : { width: "60%" }}
 		width: 100%;
 		form {
 			width: 80%;

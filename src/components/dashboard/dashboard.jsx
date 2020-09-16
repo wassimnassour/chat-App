@@ -19,7 +19,7 @@ const Dashboard = ({ history }) => {
 	const [newChatFormVisible, setNewChatFormVisible] = useState(true);
 	const [chats, setChats] = useState([]);
 	const [selectedChat, setSelectedChat] = useState(null);
-	const [Media, setMedia] = useState(null);
+	const [media, setMedia] = useState(null);
 
 	useEffect(() => {
 		auth.onAuthStateChanged(async (_usr) => {
@@ -181,7 +181,7 @@ const Dashboard = ({ history }) => {
 			{email ? (
 				<DashBoardContainer>
 					<DashBoardWrapper>
-						{newChatFormVisible ? null : (
+						{newChatFormVisible && media ? null : (
 							<ChatList
 								newChatBtnFn={newChatBtnClicked}
 								SelectedChatFn={selectedChatList}
