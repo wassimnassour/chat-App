@@ -1,16 +1,20 @@
-import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
-import { SignUp, SignIn, Dashboard } from "./components/index";
+import React, { useEffect } from "react";
+import { auth } from "./firebase/firebase";
 import "./App.css";
 
-function App() {
-	return (
-		<BrowserRouter>
-			<Route path="/signup" component={SignUp} />
-			<Route path="/signin" component={SignIn} />
-			<Route path="/dashboard" component={Dashboard} />
-		</BrowserRouter>
-	);
+function App({ history }) {
+	useEffect(() => {
+		auth.onAuthStateChanged(async (_usr) => {
+			//check if user alerady singin
+			if (!_usr) {
+				history.push("/signin");
+			} else {
+				history.push("/dashboard");
+			}
+		});
+	}, [history]);
+
+	return <></>;
 }
 
 export default App;

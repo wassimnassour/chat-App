@@ -9,6 +9,10 @@ export const Container = styled.main`
 	.backButton {
 		display: none;
 	}
+	.danger {
+		color: red;
+		text-align: center;
+	}
 	h2 {
 		text-align: center;
 	}
