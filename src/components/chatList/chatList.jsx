@@ -40,14 +40,23 @@ const ChatList = ({
 								>
 									<div className="contact">
 										<Avatar
-											name={chat.fullName}
+											name={
+												chat.users.filter(
+													(user) => user !== userEmail
+												)[0]
+											}
 											size="45"
 											round={true}
 											className="avatar"
 										/>
 										<div className="user">
 											<span className="Name">
-												{chat.fullName}
+												{
+													chat.users.filter(
+														(user) =>
+															user !== userEmail
+													)[0]
+												}
 											</span>
 											<span className="last_message">
 												{chat.messages[

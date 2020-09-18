@@ -34,33 +34,7 @@ const Dashboard = ({ history }) => {
 					.onSnapshot(async (res) => {
 						const chats = await res.docs.map((_doc) => _doc.data());
 						setEmail(_usr.email);
-
-						const getDataWithFullName = async () => {
-							chats.map(async (chat) => {
-								const Email = chat.users.filter(
-									(user) => user !== email
-								)[0];
-								async function setData(chat, userName) {
-									await setChats((prevState) => [
-										...prevState,
-										{
-											...chat,
-											fullName: userName,
-										},
-									]);
-								}
-								await db
-									.collection("users")
-									.doc(Email)
-									.get()
-									.then((res) =>
-										setData(chat, res.data().fullName)
-									)
-									.catch((err) => console.log(err));
-							});
-						};
-
-						getDataWithFullName();
+						setChats(chats);
 					});
 			}
 		});
