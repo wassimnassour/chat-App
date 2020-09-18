@@ -11,6 +11,8 @@ const NewChatComponents = ({
 }) => {
 	const [userName, setUserName] = useState("");
 	const [message, setMessage] = useState("");
+	const [Error, setError] = useState(null);
+	console.log(Error);
 	const buildDocKey = () =>
 		[auth.currentUser.email, userName].sort().join(":");
 
@@ -36,6 +38,8 @@ const NewChatComponents = ({
 			chat
 				? goToChatFn(key, message)
 				: submitNewChatFn({ sendTo: userName, msg: message });
+		} else {
+			setError("Account does not exist");
 		}
 	};
 	console.log(newChatFormVisible);
@@ -48,6 +52,7 @@ const NewChatComponents = ({
 				<MdBackspace />
 			</button>
 			<h2>Send A Message!</h2>
+			{Error ? <span className="danger">{Error}</span> : null}
 			<form onSubmit={submit}>
 				<label htmlFor="new-chat-username">
 					Enter Your Friend's Email
@@ -62,7 +67,10 @@ const NewChatComponents = ({
 				<textarea
 					required
 					id="new-chat-message"
-					onChange={(e) => setMessage(e.target.value)}
+					onChange={(e) => {
+						setMessage(e.target.value);
+						setError(null);
+					}}
 				/>
 
 				<ButtonSubmit type="submit" onClick={() => submit}>
