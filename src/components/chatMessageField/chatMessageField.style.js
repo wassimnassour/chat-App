@@ -13,9 +13,11 @@ export const MessageFieldContainer = styled.div`
 	margin-bottom: 6px;
 	align-items: center;
 	padding: 1px;
-
+	justify-content: space-between;
 	input {
-		flex-basis: 95%;
+		/*		flex-basis: 95%;
+*/
+		padding: 0 6px;
 		height: 38px;
 		border-radius: 20px;
 		padding: 0 1rem;
@@ -26,9 +28,12 @@ export const MessageFieldContainer = styled.div`
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		flex-basis: 5%;
-		border-radius: 20px;
-		padding: 0 1rem;
+		/*		flex-basis: 5%;
+/*
+	border-radius: 20px;
+*/
+		/*		padding: 0 1rem;
+*/
 		border: none;
 
 		font-size: 22px;
@@ -36,7 +41,7 @@ export const MessageFieldContainer = styled.div`
 		color: #0f4c75;
 		outline: none;
 	}
-	@media (max-width: 500px) {
+	@media (max-width: 650px) {
 		width: 91%;
 	}
 `;

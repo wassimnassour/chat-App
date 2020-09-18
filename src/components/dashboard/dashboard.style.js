@@ -15,10 +15,7 @@ export const ChatContainer = styled.div`
 	@media (min-width: 650px) and (max-width: 800px) {
 		width: 64%;
 	}
-	@media (min-width: 500px) and (max-width: 650px) {
-		width: 60%;
-	}
-	@media (max-width: 500px) {
+	@media (max-width: 650px) {
 		${({ selectedChatIndex }) =>
 			selectedChatIndex !== null
 				? { width: "100%" }

@@ -40,7 +40,7 @@ const Dashboard = ({ history }) => {
 		});
 
 		//add Event Listener for Media querie
-		const mq = window.matchMedia("(max-width: 500px)");
+		const mq = window.matchMedia("(max-width: 650px)");
 		mq.addEventListener("change", WidthChange);
 		WidthChange(mq);
 		// media query change

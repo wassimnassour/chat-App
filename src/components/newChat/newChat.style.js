@@ -35,16 +35,14 @@ export const Container = styled.main`
 			outline: none;
 		}
 	}
-	@media (max-width: 500px) {
+
+	@media (max-width: 650px) {
 		${({ newChatFormVisible }) =>
 			newChatFormVisible ? { width: "100%" } : { width: "60%" }}
 		width: 100%;
 		form {
 			width: 80%;
 		}
-	}
-
-	@media (max-width: 500px) {
 		.backButton {
 			border: none;
 			background: transparent;

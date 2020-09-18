@@ -16,23 +16,21 @@ const ChatView = ({ chat, userEmail, selectedChat, SetConversitionOpenFn }) => {
 			container.scrollTo(0, container.scrollHeight);
 		}
 		// get a name of freind
-		const getNameOfFriend = async () => {
-			if (selectedChat !== null) {
-				const emailOfFriend = chat[selectedChat].users.filter(
-					(_usr) => _usr !== userEmail
-				)[0];
+		// const getNameOfFriend = async () => {
+		// 	if (selectedChat !== null) {
+		// 		const emailOfFriend =
 
-				const name = await db
-					.collection("users")
-					.doc(emailOfFriend)
-					.get();
+		// 		const name = await db
+		// 			.collection("users")
+		// 			.doc(emailOfFriend)
+		// 			.get();
 
-				await setUserName(name.data().fullName);
-			} else {
-				setUserName(null);
-			}
-		};
-		getNameOfFriend();
+		// 		await setUserName(name.data().fullName);
+		// 	} else {
+		// 		setUserName(null);
+		// 	}
+		// };
+		// getNameOfFriend();
 	}, [chat, selectedChat]);
 
 	return (
@@ -43,7 +41,13 @@ const ChatView = ({ chat, userEmail, selectedChat, SetConversitionOpenFn }) => {
 						<button onClick={() => SetConversitionOpenFn()}>
 							<MdBackspace />
 						</button>
-						<span>{userName}</span>
+						<span>
+							{
+								chat[selectedChat].users.filter(
+									(_usr) => _usr !== userEmail
+								)[0]
+							}
+						</span>
 					</ToolBar>
 					<ChatContent id="chatview-container">
 						{chat[selectedChat].messages.map((_msg, _index) => (

@@ -3,18 +3,15 @@ import styled, { css } from "styled-components";
 export const ChatListContainer = styled.div`
 	display: flex;
 	flex-direction: column;
-	width: 30%;
+	width: 40%;
 	position: relative;
 	border-right: 1px solid #62626233;
 	background: #0f4c75;
 
 	@media (max-width: 800px) {
-		width: 36%;
+		width: 43%;
 	}
 	@media (max-width: 650px) {
-		width: 40%;
-	}
-	@media (max-width: 500px) {
 		${({ selectedChatIndex }) =>
 			selectedChatIndex !== null
 				? { display: "none" }
@@ -25,7 +22,7 @@ export const List = styled.li`
 	display: flex;
 	flex-direction: column;
 	border-bottom: 1px solid #fffbfb17;
-	padding: 12px 0px 12px 8px;
+	padding: 12px 0px 12px 5px;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
@@ -43,6 +40,7 @@ export const List = styled.li`
 				font-weight: bold;
 				margin: 4px 0;
 				color: white;
+				    word-break: break-word;
 			}
 			.last_message {
 				font-weight: 400;
