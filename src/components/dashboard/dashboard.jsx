@@ -5,6 +5,8 @@ import {
 	DashBoardWrapper,
 	ChatContainer,
 } from "./dashboard.style";
+import firebase from "firebase/app";
+import "firebase/firestore";
 import {
 	ChatList,
 	ChatView,
@@ -12,7 +14,6 @@ import {
 	NewChatComponents,
 } from "../index";
 import { auth, db } from "../../firebase/firebase";
-const firebase = require("firebase");
 
 const Dashboard = ({ history }) => {
 	const [email, setEmail] = useState(null);

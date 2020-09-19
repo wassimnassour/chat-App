@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { MdBackspace } from "react-icons/md";
-import { db } from "../../firebase/firebase";
 import {
 	ChatViewContainer,
 	ToolBar,
