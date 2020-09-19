@@ -20,7 +20,7 @@ const SignUp = ({ history }) => {
         setLoading(false);
       }
     });
-  }, []);
+  }, [history]);
   const SignUpWithEmail = (e) => {
     e.preventDefault(); // This is to prevent the automatic refreshing of the page on submit.
     if (email.length > 0 && password.length > 0 && fullName.length > 0) {

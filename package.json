@@ -1,5 +1,6 @@
 {
   "name": "chat-app",
+  "homepage": "https://wassimnassour.github.io/chat-App/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -18,6 +19,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "deploy": "npm run build && gh-pages -d build",
     "build": "CI= react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -36,5 +38,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^3.1.0",
+    "push-dir": "^0.4.1"
   }
 }

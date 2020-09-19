@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, withRouter } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import { SignUp, SignIn, Dashboard } from "./components/index";
 
 import "./index.css";

@@ -12,7 +12,6 @@ const NewChatComponents = ({
 	const [userName, setUserName] = useState("");
 	const [message, setMessage] = useState("");
 	const [Error, setError] = useState(null);
-	console.log(Error);
 	const buildDocKey = () =>
 		[auth.currentUser.email, userName].sort().join(":");
 
@@ -42,7 +41,6 @@ const NewChatComponents = ({
 			setError("Account does not exist");
 		}
 	};
-	console.log(newChatFormVisible);
 	return (
 		<Container newChatFormVisible={newChatFormVisible}>
 			<button
