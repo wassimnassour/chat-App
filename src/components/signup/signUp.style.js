@@ -8,22 +8,30 @@ export const SignUpContainer = styled.main`
   height: 100vh;
 `;
 export const SignUpWrapper = styled.div`
-  width: 350px;
-  height: auto;
+  display: flex;
+  align-items: center;
+  width: 850px;
+  height: 600px;
   box-shadow: 0 0 2px 0 #6f6f6fcc;
-  padding: 2rem;
-
+  .signUp {
+    width: 52%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
   h1 {
     font-size: 24px;
     text-align: center;
   }
   form {
     margin: 44px 0 20px;
+    width: 80%;
   }
   button {
     background: #0f4c75;
     border: none;
-    width: 100%;
+    width: 80%;
     margin: 0 auto;
     color: white;
     font-size: 20px;
@@ -44,6 +52,11 @@ export const SignUpWrapper = styled.div`
   .danger {
     color: red;
     text-align: center;
+  }
+  @media (max-width: 700px) {
+    .signUp {
+      width: 100%;
+    }
   }
 `;
 export const InputContainer = styled.div`

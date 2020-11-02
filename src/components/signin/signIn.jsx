@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { BoxLoading } from "react-loadingg";
-
-import {
-  SignUpContainer,
-  SignUpWrapper,
-  InputContainer,
-} from "../signup/signUp.style";
-import { auth } from "../../firebase/firebase";
 import { Link } from "react-router-dom";
+import {
+  SignInContainer,
+  SignInWrapper,
+  InputContainer,
+} from "./signIn.style";
+import { auth } from "../../firebase/firebase";
+import { Welcome } from "../index";
 
 const SignIn = ({ history }) => {
   const [email, setEmail] = useState("");
@@ -46,46 +46,53 @@ const SignIn = ({ history }) => {
   };
 
   return (
-    <SignUpContainer>
+    <SignInContainer>
       {!loading ? (
-        <SignUpWrapper>
-          <h1>Sign In</h1>
-          <form>
-            {error ? (
-              <div>
-                <span className="danger">{error}</span>
-              </div>
-            ) : null}
-            <InputContainer>
-              <label>Email:</label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </InputContainer>
-            <InputContainer>
-              <label>Password:</label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </InputContainer>
-          </form>
-          <button type="submit" onClick={() => submit()}>
-            Sign In
-          </button>
-          <span>
-            if you have don't have account <Link to="/signup">Sign Up</Link>
-          </span>
-        </SignUpWrapper>
+        <SignInWrapper>
+          <Welcome
+           title="Welcome Back!"
+           subTitle="To keep connected with us please login with your personal info"
+          
+          />
+          <div className="signIn">
+            <h1>Sign In</h1>
+            <form>
+              {error ? (
+                <div>
+                  <span className="danger">{error}</span>
+                </div>
+              ) : null}
+              <InputContainer>
+                <label>Email:</label>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </InputContainer>
+              <InputContainer>
+                <label>Password:</label>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </InputContainer>
+            </form>
+            <button type="submit" onClick={() => submit()}>
+              Sign In
+            </button>
+            <span>
+              if you have don't have account <Link to="/signup">Sign Up</Link>
+            </span>
+          </div>
+        </SignInWrapper>
       ) : (
         <BoxLoading CircleToBlockLoading color="#0f4c75" />
       )}
-    </SignUpContainer>
+    </SignInContainer>
   );
 };
 

@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { BoxLoading } from "react-loadingg";
-
 import { Link } from "react-router-dom";
 import { auth, db } from "../../firebase/firebase";
 import { SignUpContainer, SignUpWrapper, InputContainer } from "./signUp.style";
-
+import { Welcome } from "../index";
 const SignUp = ({ history }) => {
   const [email, setEmail] = useState("");
   const [fullName, setFullName] = useState("");
@@ -62,50 +61,54 @@ const SignUp = ({ history }) => {
       {!loading ? (
         <SignUpContainer>
           <SignUpWrapper>
-            <h1>Sign Up</h1>
+            <Welcome
+             title="Hello ,Friend!"
+             subTitle="Enter your personel details and start journey with us"
+           />
+            <div className="signUp">
+              <h1>Sign Up</h1>
+              <form>
+                {error ? (
+                  <div>
+                    <span className="danger">{error}</span>
+                  </div>
+                ) : null}
+                <InputContainer>
+                  <label>FullName:</label>
+                  <input
+                    type="text"
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                    required
+                  />
+                </InputContainer>
+                <InputContainer>
+                  <label>Email:</label>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                </InputContainer>
+                <InputContainer>
+                  <label>Password:</label>
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                </InputContainer>
+              </form>
 
-            <form>
-              {error ? (
-                <div>
-                  <span className="danger">{error}</span>
-                </div>
-              ) : null}
-
-              <InputContainer>
-                <label>FullName:</label>
-                <input
-                  type="text"
-                  value={fullName}
-                  onChange={(e) => setFullName(e.target.value)}
-                  required
-                />
-              </InputContainer>
-              <InputContainer>
-                <label>Email:</label>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </InputContainer>
-              <InputContainer>
-                <label>Password:</label>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-              </InputContainer>
-            </form>
-
-            <button type="submit" onClick={(e) => SignUpWithEmail(e)}>
-              Sign Up
-            </button>
-            <span>
-              if you have account <Link to="/signin">Sign In</Link>
-            </span>
+              <button type="submit" onClick={(e) => SignUpWithEmail(e)}>
+                Sign Up
+              </button>
+              <span>
+                if you have account <Link to="/signin">Sign In</Link>
+              </span>
+            </div>
           </SignUpWrapper>
         </SignUpContainer>
       ) : (

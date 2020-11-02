@@ -5,13 +5,15 @@ import ChatList from "./chatList/chatList";
 import ChatView from "./chatView/chatView";
 import ChatMessageField from "./chatMessageField/chatMessageField";
 import NewChatComponents from "./newChat/newChat";
+import Welcome from "./welcome/welcome";
 
 export {
-	SignUp,
-	SignIn,
-	Dashboard,
-	ChatList,
-	ChatView,
-	ChatMessageField,
-	NewChatComponents,
+  SignUp,
+  SignIn,
+  Dashboard,
+  ChatList,
+  ChatView,
+  ChatMessageField,
+  NewChatComponents,
+  Welcome,
 };
