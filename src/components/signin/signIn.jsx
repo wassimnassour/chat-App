@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BoxLoading } from "react-loadingg";
 import { Link } from "react-router-dom";
-import {
-  SignInContainer,
-  SignInWrapper,
-  InputContainer,
-} from "./signIn.style";
+import { SignInContainer, SignInWrapper, InputContainer } from "./signIn.style";
 import { auth } from "../../firebase/firebase";
 import { Welcome } from "../index";
 
@@ -28,7 +24,6 @@ const SignIn = ({ history }) => {
   const submit = () => {
     if (email.length > 0 && password.length > 0) {
       setLoading(true);
-
       auth
         .signInWithEmailAndPassword(email, password)
         .then(() => {
@@ -36,12 +31,11 @@ const SignIn = ({ history }) => {
         })
         .catch((err) => {
           setLoading(false);
-
           setError(err.message);
         });
     } else {
       setLoading(false);
-      setError("something went wrong ");
+      setError("something went wrong");
     }
   };
 
@@ -50,9 +44,8 @@ const SignIn = ({ history }) => {
       {!loading ? (
         <SignInWrapper>
           <Welcome
-           title="Welcome Back!"
-           subTitle="To keep connected with us please login with your personal info"
-          
+            title="Welcome Back!"
+            subTitle="To keep connected with us please login with your personal info"
           />
           <div className="signIn">
             <h1>Sign In</h1>
@@ -85,7 +78,7 @@ const SignIn = ({ history }) => {
               Sign In
             </button>
             <span>
-              if you have don't have account <Link to="/signup">Sign Up</Link>
+              if you don't have account <Link to="/signup">Sign Up</Link>
             </span>
           </div>
         </SignInWrapper>

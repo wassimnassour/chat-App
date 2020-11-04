@@ -58,7 +58,9 @@ const NewChatComponents = ({
 				<input
 					required
 					id="new-chat-username"
-					onChange={(e) => setUserName(e.target.value)}
+					onChange={(e) =>{
+						setUserName(e.target.value); setError("");
+					}}
 				/>
 
 				<label htmlFor="new-chat-username">Enter Your Message</label>

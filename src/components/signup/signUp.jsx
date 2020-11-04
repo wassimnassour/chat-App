@@ -62,9 +62,9 @@ const SignUp = ({ history }) => {
         <SignUpContainer>
           <SignUpWrapper>
             <Welcome
-             title="Hello ,Friend!"
-             subTitle="Enter your personel details and start journey with us"
-           />
+              title="Hello ,Friend!"
+              subTitle="Enter your personel details and start journey with us"
+            />
             <div className="signUp">
               <h1>Sign Up</h1>
               <form>
