@@ -1,6 +1,5 @@
 {
   "name": "chat-app",
-  "homepage": "https://wassimnassour.github.io/chat-App/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
